@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "mode": "paper",
+  "lastUpdate": "2026-02-03T12:00:00Z",
+
+  "portfolio": {
+    "capital": 80.00,
+    "initial": 100.00,
+    "openPositions": ["pos-1"]
+  },
+
+  "positions": [
+    {
+      "id": "pos-1",
+      "market": "Will U.S. collect <$100b in tariff revenue in 2025?",
+      "marketUrl": "https://polymarket.com/event/tariff-revenue",
+      "side": "NO",
+      "entryPrice": 0.23,
+      "shares": 86.96,
+      "costBasis": 20.00,
+      "entryTime": "2026-02-03T12:00:00Z",
+      "myEstimate": 0.97,
+      "confidence": "HIGH",
+      "edge": 0.74,
+      "thesis": "2025 tariff data already known: $264-287B collected. Market mispriced at 77% YES when answer is clearly NO.",
+      "resolution": "2026-02-28",
+      "potentialWin": 66.96,
+      "potentialLoss": 20.00
+    }
+  ],
+
+  "dailyStats": {
+    "date": "2026-02-03",
+    "startCapital": 100.00,
+    "betsPlaced": 1,
+    "betsWon": 0,
+    "betsLost": 0,
+    "pnl": 0
+  },
+
+  "allTimeStats": {
+    "totalBets": 1,
+    "wins": 0,
+    "losses": 0,
+    "totalPnl": 0,
+    "winRate": 0,
+    "avgEdge": 0.74,
+    "avgConfidence": 1.0
+  }
+}

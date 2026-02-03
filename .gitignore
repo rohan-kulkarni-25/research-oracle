@@ -1,0 +1,31 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*-keypair.json
+
+# Solana
+wallet/
+target/
+test-ledger/
+
+# Node
+node_modules/
+dist/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Records (may contain sensitive data)
+records/*.jsonl
+
+# Temp files
+*.tmp
+.cache/

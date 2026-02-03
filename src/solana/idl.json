@@ -1,0 +1,84 @@
+{
+  "address": "AriGWxj99R7PtrEn3dvszvVLDrSb8RLt6GEostKzLzFL",
+  "metadata": {
+    "name": "research_oracle",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "version": "0.1.0",
+  "name": "research_oracle",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        { "name": "oracleState", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "attest",
+      "accounts": [
+        { "name": "attestation", "isMut": true, "isSigner": false },
+        { "name": "oracleState", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "questionHash", "type": { "array": ["u8", 32] } },
+        { "name": "estimate", "type": "u16" },
+        { "name": "confidence", "type": "u8" },
+        { "name": "deadline", "type": "i64" }
+      ]
+    },
+    {
+      "name": "resolve",
+      "accounts": [
+        { "name": "attestation", "isMut": true, "isSigner": false },
+        { "name": "oracleState", "isMut": true, "isSigner": false },
+        { "name": "authority", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "outcome", "type": "bool" }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "OracleState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "publicKey" },
+          { "name": "totalAttestations", "type": "u64" },
+          { "name": "totalResolved", "type": "u64" },
+          { "name": "cumulativeBrier", "type": "u64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "Attestation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "oracle", "type": "publicKey" },
+          { "name": "questionHash", "type": { "array": ["u8", 32] } },
+          { "name": "estimate", "type": "u16" },
+          { "name": "confidence", "type": "u8" },
+          { "name": "deadline", "type": "i64" },
+          { "name": "createdAt", "type": "i64" },
+          { "name": "resolved", "type": "bool" },
+          { "name": "outcome", "type": "bool" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "InvalidEstimate", "msg": "Estimate must be between 0 and 10000 basis points" },
+    { "code": 6001, "name": "InvalidConfidence", "msg": "Confidence must be 0, 1, or 2 (LOW, MEDIUM, HIGH)" },
+    { "code": 6002, "name": "AlreadyResolved", "msg": "Attestation has already been resolved" }
+  ]
+}
